@@ -26,8 +26,9 @@
 
         <div class="form-group">
             <label for="paper">Select Paper</label>
-            <select id="paper" name="paper">
-                <option value="">Choose a paper</option>
+            <select id="paper" name="paper"
+                onchange="selectTimer(this.value, document.getElementById('subject').value )">
+                <option value="">Choose a Subject </option>
                 <!-- Paper options will be populated by JavaScript -->
             </select>
         </div>
@@ -36,7 +37,8 @@
             00:00:00
         </div>
 
-        <button class="start-button">Start Timer</button>
+        <button class="start-button"
+            onclick="startTimer(document.getElementsByClassName('timer-display')[0].textContent)">Start Timer</button>
     </div>
 
     <script src="index.js"></script>
