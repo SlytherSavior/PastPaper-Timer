@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>CIE A-Level Exam Timer</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>CIE A-Level Exam Timer</h1>
+
+        <div class="form-group">
+            <label for="subject">Select Subject</label>
+            <select id="subject" name="subject">
+                <option value="">Choose a subject</option>
+                <option value="9702">Physics (9702)</option>
+                <option value="9701">Chemistry (9701)</option>
+                <option value="9709">Mathematics (9709)</option>
+                <option value="8021">English General Paper (8021)</option>
+                <option value="9618">Computer Science (9618)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="paper">Select Paper</label>
+            <select id="paper" name="paper">
+                <option value="">Choose a paper</option>
+                <!-- Paper options will be populated by JavaScript -->
+            </select>
+        </div>
+
+        <div class="timer-display">
+            00:00:00
+        </div>
+
+        <button class="start-button">Start Timer</button>
+    </div>
+
+    <script src="index.ts"></script>
+</body>
+
+</html>
