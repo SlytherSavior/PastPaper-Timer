@@ -121,7 +121,7 @@ function changePapers(subjectName) {
         const subjectPaper = data[subjectName].papers;
         paperList.innerHTML = '<option value="">Choose a paper</option>';
 
-        for (paper in subjectPaper) {
+        for (let paper in subjectPaper) {
             paperList.append(
                 Object.assign(document.createElement('option'), {
                     value: `${paper}`,
@@ -155,7 +155,7 @@ function buildTimerData(hours, minutes, seconds) {
 }
 
 function startTimer(timer) {
-    timerArr = timer.split(':').map(arr => {
+    let timerArr = timer.split(':').map(arr => {
         return +arr;
     });
     // console.log(timerArr)
