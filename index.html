@@ -14,7 +14,7 @@
 
         <div class="form-group">
             <label for="subject">Select Subject</label>
-            <select id="subject" name="subject">
+            <select id="subject" name="subject" onchange="changePapers(this.value)">
                 <option value="">Choose a subject</option>
                 <option value="9702">Physics (9702)</option>
                 <option value="9701">Chemistry (9701)</option>
@@ -39,7 +39,7 @@
         <button class="start-button">Start Timer</button>
     </div>
 
-    <script src="index.ts"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
