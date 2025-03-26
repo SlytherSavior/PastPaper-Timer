@@ -3,15 +3,15 @@ const data = {
         "name": "Physics",
         "papers": {
             "Paper 1": {
-                "duration": 0.5,
+                "duration": 75,
                 "description": "Multiple Choice"
             },
             "Paper 2": {
-                "duration": 60,
+                "duration": 75,
                 "description": "AS Level Structured Questions"
             },
             "Paper 3": {
-                "duration": 75,
+                "duration": 120,
                 "description": "Advanced Practical Skills"
             },
             "Paper 4": {
@@ -32,11 +32,11 @@ const data = {
                 "description": "Multiple Choice"
             },
             "Paper 2": {
-                "duration": 60,
+                "duration": 75,
                 "description": "AS Level Structured Questions"
             },
             "Paper 3": {
-                "duration": 75,
+                "duration": 120,
                 "description": "Advanced Practical Skills"
             },
             "Paper 4": {
@@ -53,7 +53,7 @@ const data = {
         "name": "Mathematics",
         "papers": {
             "Paper 1": {
-                "duration": 75,
+                "duration": 110,
                 "description": "Pure Mathematics 1"
             },
             "Paper 2": {
@@ -61,7 +61,7 @@ const data = {
                 "description": "Pure Mathematics 2"
             },
             "Paper 3": {
-                "duration": 75,
+                "duration": 110,
                 "description": "Pure Mathematics 3"
             },
             "Paper 4": {
@@ -82,11 +82,11 @@ const data = {
         "name": "English General Paper",
         "papers": {
             "Paper 1": {
-                "duration": 90,
+                "duration": 75,
                 "description": "Essay"
             },
             "Paper 2": {
-                "duration": 90,
+                "duration": 105,
                 "description": "Comprehension"
             }
         }
@@ -99,7 +99,7 @@ const data = {
                 "description": "Theory Fundamentals"
             },
             "Paper 2": {
-                "duration": 90,
+                "duration": 120,
                 "description": "Fundamental Problem-solving and Programming Skills"
             },
             "Paper 3": {
@@ -107,7 +107,7 @@ const data = {
                 "description": "Advanced Theory"
             },
             "Paper 4": {
-                "duration": 90,
+                "duration": 150,
                 "description": "Further Problem-solving and Programming Skills"
             }
         }
