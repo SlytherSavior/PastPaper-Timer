@@ -155,6 +155,7 @@ function buildTimerData(hours, minutes, seconds) {
 }
 
 function startTimer(timer) {
+    const startTime = Date.now() / 1000;
     let timerArr = timer.split(':').map(arr => {
         return +arr;
     });
@@ -163,12 +164,15 @@ function startTimer(timer) {
     const initialMinutes = timerArr[1];
     const initialSeconds = timerArr[2];
 
-    let remainingTime = (initialHours * 60 * 60) + (initialMinutes * 60) + initialSeconds;
+    let duration = (initialHours * 60 * 60) + (initialMinutes * 60) + initialSeconds;
+
+    let remainingTime = duration;
 
     const currentDocument = document.getElementById('paper').value;
     function updateTimer() {
         if (remainingTime !== 0 && currentDocument === document.getElementById('paper').value) {
-            remainingTime--;
+            let timeElapsed = (Date.now() / 1000) - startTime;
+            remainingTime = Math.floor(Math.max(0, duration - timeElapsed));
             let hours = Math.floor(remainingTime / 3600);
             let minutes = Math.floor(Math.floor(remainingTime % 3600) / 60);
             let seconds = remainingTime - (hours * 3600) - (minutes * 60);
