@@ -149,7 +149,15 @@ function selectTimer(paper, subject) {
         const minutes = Math.floor((paperTime % 3600) / 60);
         const seconds = paperTime - (hours * 3600) - (minutes * 60);
         timerDisplay[0].textContent = buildTimerData(hours, minutes, seconds);
-
+        if (intervalTimer !== '') {
+            clearInterval(intervalTimer);
+            intervalTimer = '';
+            alert("Paper Changed");
+        } 
+        startButton.className = "start-button";
+        startButton.textContent = "Start Timer";
+        stopButton.className = "hidden";
+        
     }
 };
 
@@ -158,7 +166,7 @@ function buildTimerData(hours, minutes, seconds) {
 }
 
 function startTimer(timer) {
-    if (timer.trim() == "00:00:00") {
+    if (timer.trim() === "00:00:00") {
         alert("Select a paper first !!");
     }
     else {
@@ -169,7 +177,8 @@ function startTimer(timer) {
         const initialHours = timerArr[0];
         const initialMinutes = timerArr[1];
         const initialSeconds = timerArr[2];
-        stopButton.className = "start-button stop-button"
+        stopButton.className = "start-button"
+        startButton.className = "hidden";
         let duration = (initialHours * 60 * 60) + (initialMinutes * 60) + initialSeconds;
 
         let remainingTime = duration;
@@ -189,6 +198,10 @@ function startTimer(timer) {
                 (document.getElementById('paper').value !== currentDocument) ? alert("Paper Changed") : alert("Time is Up Candidate");
                 selectTimer(document.getElementById('paper').value, document.getElementById('subject').value)
                 stopButton.className = "hidden"
+                startButton.textContent = "Start Timer"
+                startButton.className = "start-button";
+                intervalTimer = '';
+                console.log(intervalTimer);
             }
 
         };
@@ -198,7 +211,8 @@ function startTimer(timer) {
 }
 
 function pauseTimer() {
-    startButton.textContent = "Resume Timer";
+    startButton.className = "start-button";
+    startButton.textContent = "Resume Timer";   
     stopButton.className = "hidden";
     clearInterval(intervalTimer);
 }
