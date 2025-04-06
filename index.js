@@ -116,7 +116,9 @@ const data = {
 
 const paperList = document.getElementById('paper');
 const timerDisplay = document.getElementsByClassName("timer-display");
-const stopTimer = document.getElementById("stop-button");
+const stopButton = document.getElementById("stop-button");
+const startButton = document.getElementById("start-button");
+let intervalTimer = '';
 
 function changePapers(subjectName) {
     if (subjectName !== "") {
@@ -156,8 +158,7 @@ function buildTimerData(hours, minutes, seconds) {
 }
 
 function startTimer(timer) {
-    console.log(timer)
-    if (timer.strip() == "00:00:00") {
+    if (timer.trim() == "00:00:00") {
         alert("Select a paper first !!");
     }
     else {
@@ -165,11 +166,10 @@ function startTimer(timer) {
         let timerArr = timer.split(':').map(arr => {
             return +arr;
         });
-        // console.log(timerArr)
         const initialHours = timerArr[0];
         const initialMinutes = timerArr[1];
         const initialSeconds = timerArr[2];
-        stopTimer.textContent = "Pause Timer";
+        stopButton.className = "start-button stop-button"
         let duration = (initialHours * 60 * 60) + (initialMinutes * 60) + initialSeconds;
 
         let remainingTime = duration;
@@ -188,11 +188,19 @@ function startTimer(timer) {
                 clearInterval(intervalTimer);
                 (document.getElementById('paper').value !== currentDocument) ? alert("Paper Changed") : alert("Time is Up Candidate");
                 selectTimer(document.getElementById('paper').value, document.getElementById('subject').value)
+                stopButton.className = "hidden"
             }
 
         };
 
-        const intervalTimer = setInterval(updateTimer, 1000);
+         intervalTimer = setInterval(updateTimer, 1000);
     }
 }
+
+function pauseTimer() {
+    startButton.textContent = "Resume Timer";
+    stopButton.className = "hidden";
+    clearInterval(intervalTimer);
+}
+
 
