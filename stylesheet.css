@@ -123,3 +123,7 @@ select:focus {
     border-color: #ffc107;
     color: #856404;
 }
+
+.hidden { 
+    display: none;
+}
