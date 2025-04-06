@@ -115,6 +115,8 @@ const data = {
 };
 
 const paperList = document.getElementById('paper');
+const timerDisplay = document.getElementsByClassName("timer-display");
+const stopTimer = document.getElementById("stop-button");
 
 function changePapers(subjectName) {
     if (subjectName !== "") {
@@ -137,7 +139,6 @@ function changePapers(subjectName) {
 
 
 };
-const timerDisplay = document.getElementsByClassName("timer-display");
 
 function selectTimer(paper, subject) {
     if (paper !== "") {
@@ -155,38 +156,43 @@ function buildTimerData(hours, minutes, seconds) {
 }
 
 function startTimer(timer) {
-    const startTime = Date.now() / 1000;
-    let timerArr = timer.split(':').map(arr => {
-        return +arr;
-    });
-    // console.log(timerArr)
-    const initialHours = timerArr[0];
-    const initialMinutes = timerArr[1];
-    const initialSeconds = timerArr[2];
+    console.log(timer)
+    if (timer.strip() == "00:00:00") {
+        alert("Select a paper first !!");
+    }
+    else {
+        const startTime = Date.now() / 1000;
+        let timerArr = timer.split(':').map(arr => {
+            return +arr;
+        });
+        // console.log(timerArr)
+        const initialHours = timerArr[0];
+        const initialMinutes = timerArr[1];
+        const initialSeconds = timerArr[2];
+        stopTimer.textContent = "Pause Timer";
+        let duration = (initialHours * 60 * 60) + (initialMinutes * 60) + initialSeconds;
 
-    let duration = (initialHours * 60 * 60) + (initialMinutes * 60) + initialSeconds;
+        let remainingTime = duration;
 
-    let remainingTime = duration;
+        const currentDocument = document.getElementById('paper').value;
+        function updateTimer() {
+            if (remainingTime !== 0 && currentDocument === document.getElementById('paper').value) {
+                let timeElapsed = (Date.now() / 1000) - startTime;
+                remainingTime = Math.floor(Math.max(0, duration - timeElapsed));
+                let hours = Math.floor(remainingTime / 3600);
+                let minutes = Math.floor(Math.floor(remainingTime % 3600) / 60);
+                let seconds = remainingTime - (hours * 3600) - (minutes * 60);
 
-    const currentDocument = document.getElementById('paper').value;
-    function updateTimer() {
-        if (remainingTime !== 0 && currentDocument === document.getElementById('paper').value) {
-            let timeElapsed = (Date.now() / 1000) - startTime;
-            remainingTime = Math.floor(Math.max(0, duration - timeElapsed));
-            let hours = Math.floor(remainingTime / 3600);
-            let minutes = Math.floor(Math.floor(remainingTime % 3600) / 60);
-            let seconds = remainingTime - (hours * 3600) - (minutes * 60);
+                timerDisplay[0].textContent = buildTimerData(hours, minutes, seconds);
+            } else {
+                clearInterval(intervalTimer);
+                (document.getElementById('paper').value !== currentDocument) ? alert("Paper Changed") : alert("Time is Up Candidate");
+                selectTimer(document.getElementById('paper').value, document.getElementById('subject').value)
+            }
 
-            timerDisplay[0].textContent = buildTimerData(hours, minutes, seconds);
-        } else {
-            clearInterval(intervalTimer);
-            (document.getElementById('paper').value !== currentDocument) ? alert("Paper Changed") : alert("Time is Up Candidate");
-            selectTimer(document.getElementById('paper').value, document.getElementById('subject').value)
-        }
+        };
 
-    };
-
-    const intervalTimer = setInterval(updateTimer, 1000);
-
+        const intervalTimer = setInterval(updateTimer, 1000);
+    }
 }
 

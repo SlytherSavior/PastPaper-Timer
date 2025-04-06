@@ -98,6 +98,10 @@ select:focus {
     transform: translateY(0);
 }
 
+.stop-button {
+    margin-top: 1em;
+}
+
 /* Add a subtle animation for the timer */
 @keyframes pulse {
     0% {
